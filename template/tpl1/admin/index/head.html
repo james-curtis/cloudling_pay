@@ -1,0 +1,67 @@
+<nav class="navbar navbar-fixed-top navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">导航按钮</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="./">后台管理</a>
+        </div><!-- /.navbar-header -->
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li
+                {if request()->action()=='index'} class="active"{/if}>
+                <a href="{:url('index')}"><span class="glyphicon glyphicon-user"></span> 平台首页</a>
+                </li>
+                <li
+                {if request()->action()=='order'} class="active"{/if}>
+                <a href="{:url('order')}"><span class="glyphicon glyphicon-shopping-cart"></span> 订单管理</a>
+                </li>
+                <li
+                {if request()->action()=='loginlog'} class="active"{/if}>
+                <a href="{:url('loginLog')}"><span class="glyphicon glyphicon-camera"></span> 登陆记录</a>
+                </li>
+                <li
+                {if request()->action()=='balance' || request()->action()=='balanceLog'} class="active"{/if}>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span
+                        class="glyphicon glyphicon-cloud"></span> 结算管理<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a href="{:url('balance')}">结算操作</a></li>
+                    <li><a href="{:url('balanceLog')}">结算记录</a></li>
+                    <li>
+                    </li>
+                </ul>
+                </li>
+                <li
+                {if request()->action()=='traderlist'||request()->action()=='adduser'||request()->action()=='edituser'||request()->action()=='cooperatetrade'} class="active"{/if}>
+                <a href="{:url('traderList')}"><span class="glyphicon glyphicon-user"></span> 商户管理</a>
+                </li>
+                <li
+                {if request()->action()=='adminset'||request()->action()=='offGoodsset'||request()->action()=='payset'||request()->action()=='sendset'||request()->action()=='webset'} class="active"{/if}>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span
+                        class="glyphicon glyphicon-cloud"></span> 系统设置<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a href="{:url('adminSet')}">管理员账号配置</a></li>
+                    <li>
+                    </li>
+                    <li><a href="{:url('offGoodsSet')}">商品拦截配置</a></li>
+                    <li>
+                    </li>
+                    <li><a href="{:url('paySet')}">支付接口配置</a></li>
+                    <li>
+                    </li>
+                    <li><a href="{:url('sendSet')}">发件验证配置</a></li>
+                    <li><a href="{:url('webSet')}">网站配置</a></li>
+                    <li>
+                    </li>
+                </ul>
+                </li>
+                <li><a href="{:request()->domain()}" target="_blank"><span class="glyphicon glyphicon-home"></span> 返回首页</a></li>
+                <li><a href="{:url('loginOut')}"><span class="glyphicon glyphicon-log-out"></span> 退出登陆</a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container -->
+</nav><!-- /.navbar -->

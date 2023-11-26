@@ -1,0 +1,85 @@
+{layout name="index/layout" /}
+{include file="index/head"}
+<div class="container" style="padding-top:70px;">
+    <div class="panel panel-default">
+        <div class="panel-heading"><h3 class="panel-title">编辑用户</h3></div>
+        <div class="panel-body">
+            <form action="{:url('addUser')}" method="POST">
+                <div class="form-group">
+                    <label>结算方式:</label><br>
+                    <select class="form-control" name="balance">
+                        <option value="0">不结算</option>
+                        <option value="1">支付宝</option>
+                        <option value="2">QQ</option>
+                        <option value="3">微信</option>
+                        <option value="4">银行卡</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>结算账号:</label><br>
+                    <input type="text" class="form-control" name="account" placeholder="可留空">
+                </div>
+                <div class="form-group">
+                    <label>结算账号姓名:</label><br>
+                    <input type="text" class="form-control" name="name" placeholder="可留空">
+                </div>
+                <div class="form-group">
+                    <label>用户名:</label><br>
+                    <input type="text" class="form-control" name="username" required placeholder="不可空">
+                </div>
+                <div class="form-group">
+                    <label>密码:</label><br>
+                    <input type="text" class="form-control" name="pwd" required placeholder="不可空">
+                </div>
+                <div class="form-group">
+                    <label>网址:</label><br>
+                    <input type="text" class="form-control" name="url" placeholder="可留空">
+                </div>
+                <div class="form-group">
+                    <label>邮箱:</label><br>
+                    <input type="text" class="form-control" name="email" placeholder="可留空">
+                </div>
+                <div class="form-group">
+                    <label>ＱＱ:</label><br>
+                    <input type="text" class="form-control" name="qq" placeholder="可留空">
+                </div>
+                <div class="form-group">
+                    <label>手机号:</label><br>
+                    <input type="text" class="form-control" name="phone" placeholder="可留空">
+                </div>
+                <div class="form-group">
+                    <label>自定义分成比例:</label><br>
+                    <input type="text" class="form-control" name="rate" placeholder="可留空，填写百分数，例如98.5">
+                </div>
+                <div class="form-group">
+                    <label>是否激活账号:</label><br>
+                    <select class="form-control" name="active">
+                        <option value="1">激活</option>
+                        <option value="0">封禁</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>是否激活商户:</label><br>
+                    <select class="form-control" name="is_trader">
+                        <option value="1">激活</option>
+                        <option value="0" selected>封禁</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>商户等级:</label><br>
+                    <select class="form-control" name="level">
+                        <option value="0">不是商户</option>
+                        <option value="1">普通商户</option>
+                        <option value="2">合作商户</option>
+                    </select>
+                </div>
+                {:token()}
+                <input type="submit" class="btn btn-default btn-block" value="确定添加">
+            </form>
+            <br/>
+            <a href="{:url('traderList')}">>>返回用户列表</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

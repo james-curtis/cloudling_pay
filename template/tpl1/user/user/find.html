@@ -1,0 +1,79 @@
+{layout name="user/layout" /}
+<div class="app app-header-fixed  ">
+    <div class="container w-xxl w-auto-xs" ng-controller="SigninFormController"
+         ng-init="app.settings.container = false;">
+        <span class="navbar-brand block m-t" id="sitename">{$set['web_title']}</span>
+        <div class="m-b-lg">
+            <div class="wrapper text-center">
+                <strong>输入您的邮箱来找回商户</strong>
+            </div>
+            <form name="form" class="form-validation">
+                <div class="list-group list-group-sm swaplogin">
+                    <div class="list-group-item">
+                        <input type="text" name="username" placeholder="用户名" class="form-control no-border" required>
+                    </div>
+                    <div class="list-group-item">
+                        <input type="email" name="email" placeholder="邮箱" class="form-control no-border" required>
+                    </div>
+                    <div class="list-group-item">
+                        <input type="text" name="code" placeholder="验证码" class="form-control no-border" required>
+                    </div>
+                    <div class="list-group-item">
+                        验证码：<img src="{:captcha_src()}" alt="captcha" onClick="this.src=this.src+'?'+Math.random()" >
+                    </div>
+                </div>
+                <button type="button" id="submit" class="btn btn-lg btn-primary btn-block" ng-click="login()"
+                        ng-disabled='form.$invalid'>确定
+                </button>
+                <a href="{:url('login')}" ui-sref="access.signup" class="btn btn-lg btn-default btn-block">返回登录</a>
+            </form>
+        </div>
+        <div class="text-center">
+            <p>
+                <small class="text-muted">{$set['web_title']}<br>&copy; 2016~2017</small>
+            </p>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $("#submit").click(function () {
+            if ($(this).attr("data-lock") === "true") return;
+            var email = $("input[name='email']").val();
+            if (email == '') {
+                layer.alert('邮箱不能为空！');
+                return false;
+            }
+            var code = $("input[name='code']").val();
+            if (code == '') {
+                layer.alert('验证码不能为空！');
+                return false;
+            }
+            var username = $("input[name='username']").val();
+            if (username == '') {
+                layer.alert('用户名不能为空！');
+                return false;
+            }
+            var reg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/;
+            if (!reg.test(email)) {
+                layer.alert('邮箱格式不正确！');
+                return false;
+            }
+            var ii = layer.load(2, {shade: [0.1, '#fff']});
+            $.ajax({
+                type: "POST",
+                url: "{:url('User/find')}",
+                data: {email: email,code:code,username:username},
+                dataType: 'json',
+                success: function (data) {
+                    layer.close(ii);
+                    if (data.code == 1) {
+                        layer.msg('找回成功，账号信息已经发到您的邮箱，\n请注意查收！');
+                    } else {
+                        layer.alert(data.msg);
+                    }
+                }
+            });
+        });
+    });
+</script>

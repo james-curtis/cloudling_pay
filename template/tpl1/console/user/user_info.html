@@ -1,0 +1,108 @@
+{layout name="user/layout" /}
+<style>
+    .form-control:read-only {
+        cursor: not-allowed;
+    }
+</style>
+<div class="row">
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-header">商户信息查看</div>
+            <div class="card-body card-block">
+                <form action="{:url('resetKey')}" method="POST" class="" {if $user.is_trader==0}style="display:none;"{/if}>
+                    <div class="form-group"><label class=" form-control-label">商户ID</label>
+                        <input type="text" name="pid" value="{$user.pid}" class="form-control" readonly="readonly"></div>
+                    <div class="form-group"><label class=" form-control-label">商户密钥</label>
+                        <input type="text" name="key" value="{$user.key}" class="form-control" readonly="readonly"></div>
+                    <div class="form-group"><label class=" form-control-label">商户余额</label>
+                        <input type="text" value="￥{$user.money}" class="form-control" readonly="readonly"></div>
+                    {:token()}
+                    <button type="submit" class="btn btn-primary btn-sm">
+                        <i class="fa fa-dot-circle-o"></i> 重置密匙
+                    </button>
+                </form>
+                {if $user.is_trader==0}
+                <div class="sufee-alert alert with-close alert-success alert-dismissible fade show">
+                    <span class="badge badge-pill badge-success">Tips</span>&nbsp;&nbsp;你现在还不是商户，请先申请商户<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                </div>
+                {/if}
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">修改密码</div>
+            <div class="card-body card-block">
+                <form action="{:url('repwd')}" method="post" class="">
+                    <div class="form-group"><label class=" form-control-label">旧密码</label>
+                        <input type="password" name="old_pwd" placeholder="请输入原密码" class="form-control" ></div>
+                    <div class="form-group"><label class=" form-control-label">新密码</label>
+                        <input type="password" name="new_pwd" placeholder="请输入新密码" class="form-control" ></div>
+                    <div class="form-group"><label class=" form-control-label">重新输入新密码</label>
+                        <input type="password" name="re_new_pwd" placeholder="请重新输入新密码" class="form-control" ></div>
+                    {:token()}
+                    <button type="submit" class="btn btn-primary btn-sm">
+                        <i class="fa fa-dot-circle-o"></i> 修改
+                    </button>
+                    <button type="reset" class="btn btn-danger btn-sm" style="margin-left: 20px;">
+                        <i class="fa fa-ban"></i> 重置
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-header">收款账号设置</div>
+            <div class="card-body card-block" >
+                <form action="{:url('resetBalance')}" method="post" class="">
+                    <div class="form-group"><label class=" form-control-label">结算方式</label>
+                        <select name="balance" class="form-control">
+                            <option value="0" {if $user.balance==0}selected{/if}>请选择</option>
+                            <option value="1" {if $user.balance==1}selected{/if}>支付宝</option>
+                            <option value="2" {if $user.balance==2}selected{/if}>QQ</option>
+                            <option value="3" {if $user.balance==3}selected{/if}>微信</option>
+                        </select>
+                    </div>
+                    <div class="form-group"><label class=" form-control-label">收款账号</label>
+                        <input type="text" name="account" value="{$user.account}" class="form-control"></div>
+                    <div class="form-group"><label class=" form-control-label">真实姓名</label>
+                        <input type="text" name="name" value="{$user.name}" class="form-control"></div>
+                    {:token()}
+                    <button type="submit" class="btn btn-primary btn-sm">
+                        <i class="fa fa-dot-circle-o"></i> 修改
+                    </button>
+                    <button type="reset" class="btn btn-danger btn-sm" style="margin-left: 20px;">
+                        <i class="fa fa-ban"></i> 重置
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">联系方式设置</div>
+            <div class="card-body card-block">
+                <form action="{:url('resetContact')}" method="post" class="">
+                    <div class="form-group"><label class=" form-control-label">邮箱</label>
+                        <div class="input-group">
+                            <input type="email" name="email" value="{$user.email}" class="form-control" disabled>
+                            <div class="input-group-addon" style="border-left: 0;">修改绑定</div>
+                        </div>
+                    </div>
+                    <div class="form-group"><label class=" form-control-label">ＱＱ</label>
+                        <input type="text" name="qq" value="{$user.qq?$user.qq:''}" class="form-control"></div>
+                    <div class="form-group"><label class=" form-control-label">网址</label>
+                        <input type="text" name="url" value="{$user.url?$user.url:''}" class="form-control"></div>
+                    {:token()}
+                    <button type="submit" class="btn btn-primary btn-sm">
+                        <i class="fa fa-dot-circle-o"></i> 修改
+                    </button>
+                    <button type="reset" class="btn btn-danger btn-sm" style="margin-left: 20px;">
+                        <i class="fa fa-ban"></i> 重置
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

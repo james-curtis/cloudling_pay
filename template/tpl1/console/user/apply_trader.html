@@ -1,0 +1,119 @@
+{layout name="user/layout" /}
+<script src="__PUBLIC__/assets/layer/layer.js"></script>
+<div class="row">
+
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">申请商户</div>
+            <div class="card-body card-block">
+                <form action="#" method="post" class="form-horizontal">
+                    {if $set['trader_reg_open']==1&&$set['trader_reg_require_pay_money']>0}
+                    <div class="sufee-alert alert with-close alert-success alert-dismissible fade show">
+                        <span class="badge badge-pill badge-success">提示</span>&nbsp;&nbsp;商户申请价格为：{$set['trader_reg_require_pay_money']}元
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    {/if}
+                    <div class="row form-group">
+                        <div class="col col-md-3"><label class=" form-control-label">真实姓名</label></div>
+                        <div class="col-12 col-md-9"><input type="text" name="name"
+                                                            placeholder="请输入你的真实姓名..." class="form-control" required></div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col col-md-3"><label class=" form-control-label">结算方式</label>
+                        </div>
+                        <div class="col-12 col-md-9"><select name="balance" class="form-control">
+                            <option value="0">请选择</option>
+                            <option value="1">支付宝</option>
+                            <option value="2">QQ</option>
+                            <option value="3">微信</option>
+                        </select></div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col col-md-3"><label class=" form-control-label">结算账号</label></div>
+                        <div class="col-12 col-md-9"><input type="text" name="account"
+                                                            placeholder="请输入你的结算账号..." class="form-control" required></div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col col-md-3"><label class=" form-control-label">网站域名</label></div>
+                        <div class="col-12 col-md-9"><input type="text" name="url"
+                                                            placeholder="请输入你的网站域名..." class="form-control" required></div>
+                    </div>
+                    <button type="button" id="submit" class="btn btn-primary btn-sm">
+                        <i class="fa fa-dot-circle-o"></i> 提交
+                    </button>
+                    <button type="reset" class="btn btn-danger btn-sm" style="margin-left: 20px;">
+                        <i class="fa fa-ban"></i> 重置
+                    </button>
+                </form>
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+<script>
+    jQuery("#submit").click(function () {
+        if ($(this).attr("data-lock") === "true") return;//检查是否锁定
+        var balance = jQuery("select[name='balance']").val();
+        var name = jQuery("input[name='name']").val();
+        var account = jQuery("input[name='account']").val();
+        var url = jQuery("input[name='url']").val();
+        if(account=='' || name=='' || url=='' || balance==0){layer.alert('请确保各项不能为空！');return false;}
+        if (url.indexOf(" ")>=0){
+            url = url.replace(/ /g,"");
+        }
+        if (url.toLowerCase().indexOf("http://")==0){
+            url = url.slice(7);
+        }
+        if (url.toLowerCase().indexOf("https://")==0){
+            url = url.slice(8);
+        }
+        if (url.slice(url.length-1)=="/"){
+            url = url.slice(0,url.length-1);
+        }
+        jQuery("input[name='url']").val(url);
+        var ii = layer.load(2, {shade:[0.1,'#fff']});
+        $(this).attr("data-lock", "true");//上锁，防止数据冗余
+
+        //开始ajax
+        jQuery.ajax({
+            type:'POST',
+            url:'{:url("ajaxApplyTrader")}',
+            data:{balance:balance,name:name,accout:account,url:url},
+            dataType:'json',
+            success:function (data) {
+                $("#submit").attr("data-lock", "false");//解锁
+                layer.close(ii);
+                if (data.code == 1)//申请成功
+                {
+                    layer.open({
+                        type: 1,
+                        title:'商户申请成功',
+                        content:  '<li class="list-group-item"><b>商户ID：</b>'+data.pid+'</li>' +
+                            '<li class="list-group-item"><b>商户密钥：</b>'+data.key+'</li>' +
+                            '<li class="list-group-item">以上商户信息已经发送到您的邮箱中</li>'
+                    });
+                }else if (data.code == 2)
+                {
+                    layer.open({
+                        type: 2,
+                        title: '支付确认页面',
+                        shadeClose: true,
+                        shade: 0.8,
+                        //area: ['380px', '90%'],
+                        content: data.msg //iframe的url
+                    });
+                }
+            },
+            error:function (data) {
+                layer.alert(data.msg);
+            }
+        })
+    })
+</script>

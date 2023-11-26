@@ -1,0 +1,61 @@
+{include file="user/head" /}
+
+{include file="user/left" /}
+
+{php}
+//自动识别面包屑导航
+if (!empty($breadcrumbs_route))
+{
+    if (is_array($breadcrumbs_route))
+    $breadcrumbs_route = makeBreadcrumbs($breadcrumbs_route);
+}
+{/php}
+
+{/* 右侧面板 */}
+<div id="right-panel" class="right-panel">
+    {/* 页头 */}
+    {include file="user/header" /}
+    {/* /.页头 */}
+
+    {/* 面包屑导航 */}
+    <div class="breadcrumbs" style="{php}echo empty($breadcrumbs)?'':$breadcrumbs{/php}">
+        <div class="breadcrumbs-inner">
+            <div class="row m-0">
+                <div class="col-sm-4">
+                    <div class="page-header float-left">
+                        <div class="page-title">
+                            <h1>{php}echo empty($title)?$set['web_title']:$title{/php}</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-8">
+                    <div class="page-header float-right">
+                        <div class="page-title">
+                            <ol class="breadcrumb text-right">
+                                {php}echo empty($breadcrumbs_route)?'':$breadcrumbs_route{/php}
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {/* /.面包屑导航 */}
+
+    {/* 内容 */}
+    <div class="content">
+        <div class="animated fadeIn">
+        {__CONTENT__}
+        </div>
+    </div>
+    {/* /.内容 */}
+
+    <div class="clearfix"></div>
+
+    {/* 页脚 */}
+    {include file="user/footer" /}
+    {/* /.页脚*/}
+</div>
+{/* /.右侧面板 */}
+
+{include file="user/foot" /}

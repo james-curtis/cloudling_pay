@@ -1,0 +1,41 @@
+{layout name="index/layout" /}
+{include file="index/head"}
+<div class="container" style="padding-top:70px;">
+    <div class="col-md-12 center-block" style="float: none;">
+        <div class="text-center">
+            <div class="panel panel-default">
+                <div class="panel-heading">共有 <b>{$total}</b> 个商户登陆记录</div>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover" style="background: white;">
+                <thead>
+                <tr>
+                    <th class="text-center">ID</th>
+                    <th class="text-center">用户UID</th>
+                    <th class="text-center">类型</th>
+                    <th class="text-center">登录时间</th>
+                    <th class="text-center">登录地点</th>
+                    <th class="text-center">IP</th>
+                </tr>
+                </thead>
+                <tbody>
+                {foreach $data as $res}
+                <tr>
+                    <td class="text-center">{$res['id']}</td>
+                    <td class="text-center">{if $res['uid']==null}admin{else}{$res['uid']}{/if}</td>
+                    <td class="text-center">{if $res['type']==null||$res['type']==0}用户登录{else}后台登录{/if}</td>
+                    <td class="text-center">{$res['date']}</td>
+                    <td class="text-center">{$res['city']}</td>
+                    <td class="text-center">{$res['ip']}</td>
+                </tr>
+                {/foreach}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="text-center">
+            {$page}
+        </div>
+    </div>
+</div>

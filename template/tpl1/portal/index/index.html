@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{$set['web_title']}{php} echo !empty($set['web_subtitle'])?' - '.$set['web_subtitle']:'';{/php}</title>
+    {$set['add_head_code']}
+    <meta name="keywords" content="{$set['web_keywords']}">
+    <meta name="description" content="{$set['web_describe']}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="__PUBLIC__/asset/xc/css/reset.css">
+    <link href="__PUBLIC__/asset/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="__PUBLIC__/asset/xc/css/animate.css">
+    <link rel="stylesheet" href="__PUBLIC__/asset/xc/css/swiper.css">
+    <link rel="stylesheet" href="__PUBLIC__/asset/xc/css/flexslider.css">
+    <link href="__PUBLIC__/asset/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="__PUBLIC__/asset/xc/css/app.css">
+</head>
+<body>
+<div id="loading" class="loading-layer">
+    <div class="adjust-block">
+        <div class="load ">
+            <span class="sharingan"></span>
+            <span class="sharingan"></span>
+            <span class="sharingan"></span></div>
+    </div>
+</div>
+<header class="header">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-2">
+<span class="mobile-menu-icon visible-xs">
+<a id="btn-nav" href="#">
+<span>
+</span>
+<span>
+</span>
+<span>
+</span>
+</a>
+</span>
+            </div>
+            <div class="col-sm-10">
+                <nav id="site-nav" class="nav-toggle">
+                    <ul class="menu">
+                        <li><a href="{:url('user/login')}">商户登陆</a></li>
+                        <li><a href="{:url('user/reg')}">商户申请</a></li>
+                        <li><a href="http://pay.yyhyo.com/SDK">在线测试</a></li>
+                        <li><a href="http://pay.yyhyo.com/doc.php">开发文档</a></li>
+                        <li><a href="http://pay.yyhyo.com/yzf_sdk.zip">SDK下载</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+<div id="full-slider" class="flexslider section-slider">
+    <ul class="slides">
+        <li>
+            <img src="__PUBLIC__/asset/image/a15b4afegy1fprvo9qkowj21rw0ufq9z.jpg" alt />
+            <div class="adjust-block">
+                <h2 class="slide-title">{$set['web_title']}</h2>
+                <p class="slide-description">截止目前已有<b>{$set['user_count']}</b>个商户在使用本平台</p>
+                <div class="btns-row">
+                    <a href="{:url('user/login')}" class="btn btn-tran">登录商户</a>
+                    <a href="{:url('user/reg')}" class="btn btn-bl">申请接入</a>
+                </div>
+            </div>
+        </li>
+        <li>
+            <img src="__PUBLIC__/asset/image/a15b4afegy1fprvovgjsdj21rw0ufwo4.jpg" alt />
+            <div class="adjust-block">
+                <h2 class="slide-title">{$set['web_title']}</h2>
+                <p class="slide-description">截止目前已有<b>{$set['user_count']}</b>个商户在使用本平台</p>
+                <div class="btns-row">
+                    <a href="{:url('user/login')}" class="btn btn-tran">登录商户</a>
+                    <a href="{:url('user/reg')}" class="btn btn-bl">申请接入</a>
+                </div>
+            </div>
+        </li>
+        <li>
+            <img src="__PUBLIC__/asset/image/a15b4afegy1fprvp89qv3j21rw0ufdi1.jpg" alt />
+            <div class="adjust-block">
+                <h2 class="slide-title">{$set['web_title']}</h2>
+                <p class="slide-description">截止目前已有<b>{$set['user_count']}</b>个商户在使用本平台</p>
+                <div class="btns-row">
+                    <a href="{:url('user/login')}" class="btn btn-tran">登录商户</a>
+                    <a href="{:url('user/reg')}" class="btn btn-bl">申请接入</a>
+                </div>
+            </div>
+        </li>
+        <li>
+            <img src="__PUBLIC__/asset/image/a15b4afegy1fprvptoihdj21rw0ufta9.jpg" alt />
+            <div class="adjust-block">
+                <h2 class="slide-title">{$set['web_title']}</h2>
+                <p class="slide-description">截止目前已有<b>{$set['user_count']}</b>个商户在使用本平台</p>
+                <div class="btns-row">
+                    <a href="{:url('user/login')}" class="btn btn-tran">登录商户</a>
+                    <a href="{:url('user/reg')}" class="btn btn-bl">申请接入</a>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+<div class="section section-services" align="center">
+    <div class="title-block title-sub">
+        <h3 class="title-big">
+            我们的优势
+        </h3>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="service-block service-left">
+                    <div class="circle-icon feature-icon">
+                        <i class="fa fa-balance-scale"></i></div>
+                    <div class="serv-info">
+                        <h3 class="serv-title">
+                            分布执行</h3>
+                        <p class="serv-desc">
+                            程序深度优化，支付无延迟 </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="service-block service-left">
+                    <div class="circle-icon feature-icon">
+                        <i class="fa fa-user-circle-o"></i></div>
+                    <div class="serv-info">
+                        <h3 class="serv-title">
+                            账号管理 </h3>
+                        <p class="serv-desc">
+                            一账号可多网站接入，人性化 </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="service-block service-left">
+                    <div class="circle-icon feature-icon">
+                        <i class="fa fa-bar-chart"></i></div>
+                    <div class="serv-info">
+                        <h3 class="serv-title">
+                            实时监控 </h3>
+                        <p class="serv-desc">
+                            实时监控支付订单状态，0漏单</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="service-block service-left">
+                    <div class="circle-icon feature-icon">
+                        <i class="fa fa-check-circle-o"></i></div>
+                    <div class="serv-info">
+                        <h3 class="serv-title">
+                            安全保证 </h3>
+                        <p class="serv-desc">
+                            本平台敏感信息修改均需密保</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="service-block service-left">
+                    <div class="circle-icon feature-icon">
+                        <i class="fa fa-crosshairs"></i></div>
+                    <div class="serv-info">
+                        <h3 class="serv-title">
+                            T+1提现 </h3>
+                        <p class="serv-desc">
+                            T+1提现机制，让您的资金有保障！</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="service-block service-left">
+                    <div class="circle-icon feature-icon">
+                        <i class="fa fa-cubes"></i></div>
+                    <div class="serv-info">
+                        <h3 class="serv-title">
+                            高效服务 </h3>
+                        <p class="serv-desc">
+                            7X24小时在线客服随叫随到！</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="section section-funinfo">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-6 col-sm-3">
+                <div class="count-block">
+                    <div class="count-icon animate pulse" style="visibility: visible; animation-name: pulse;">
+                        <i class="fa fa-users"></i>
+                    </div>
+                    <div class="count-amount animate zoomIn" data-from="25" data-to="{$set['user_count']}" style="visibility: visible; animation-name: zoomIn;">{$set['user_count']}</div>
+                    <div class="count-name">
+                        商户数量
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-3">
+                <div class="count-block">
+                    <div class="count-icon animate pulse" style="visibility: visible; animation-name: pulse;">
+                        <i class="fa fa-bar-chart"></i>
+                    </div>
+                    <div class="count-amount animate zoomIn" data-from="25" data-to="{$set['order_count']}" style="visibility: visible; animation-name: zoomIn;">{$set['order_count']}</div>
+                    <div class="count-name">
+                        订单总数
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-3">
+                <div class="count-block">
+                    <div class="count-icon animate pulse" style="visibility: visible; animation-name: pulse;">
+                        <i class="fa fa-cube"></i>
+                    </div>
+                    <div class="count-amount animate zoomIn" data-from="25" data-to="{$set['money_count']}" style="visibility: visible; animation-name: zoomIn;">{$set['money_count']}</div>
+                    <div class="count-name">
+                        结算金额
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-3">
+                <div class="count-block">
+                    <div class="count-icon animate pulse" style="visibility: visible; animation-name: pulse;">
+                        <i class="fa fa-cubes"></i>
+                    </div>
+                    <div class="count-amount animate zoomIn" data-from="25" data-to="{$set['today_money_count']}" style="visibility: visible; animation-name: zoomIn;">{$set['today_money_count']}</div>
+                    <div class="count-name">
+                        今日交易
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="section section-pricing">
+    <div class="title-block">
+        <div class="title-big">
+            平台合作伙伴
+        </div>
+        <center>
+            <img style="FILTER: gray()" src="__PUBLIC__/asset/image/aliyun.png" width="85">
+            <img style="FILTER: gray()" src="__PUBLIC__/asset/image/qqpay.png" width="85">
+            <img style="FILTER: gray()" src="__PUBLIC__/asset/image/wxpay.png" width="85">
+            <img style="FILTER: gray()" src="__PUBLIC__/asset/image/cftpay.png" width="85">
+        </center>
+    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<footer class="footer-bottom">
+    <p class="copyright">
+        Copyright © 2017-2018 All Rights Reserved by <a href="" title="烟雨云支付">沅江市酷客网络工作室</a></br>
+        <a href="http://www.miitbeian.gov.cn/">晋ICP备17005992号-4</a><br>
+        商务合作QQ：<a href="http://wpa.qq.com/msgrd?v=3&uin=4049859&site=qq&menu=yes">4049859</a> &nbsp; | &nbsp; 公司电话：<a href="tel:073189565636">073189565636</a><br>
+    </p>
+</footer>
+<script src="__PUBLIC__/asset/xc/scripts/jquery.js"></script>
+<script src="__PUBLIC__/asset/xc/scripts/image-loaded.js"></script>
+<script src="__PUBLIC__/asset/xc/scripts/wow.js"></script>
+<script src="__PUBLIC__/asset/xc/scripts/swiper.jquery.min.js"></script>
+<script src="__PUBLIC__/asset/xc/scripts/isotope.pkgd.min.js"></script>
+<script src="__PUBLIC__/asset/xc/scripts/jquery.countto.js"></script>
+<script src="__PUBLIC__/asset/xc/scripts/jquery.flexslider.js"></script>
+<script src="__PUBLIC__/asset/xc/scripts/app.js"></script>
+</body>
+</html>
+</plaintext>
+</body>
+</html>

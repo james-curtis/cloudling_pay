@@ -1,0 +1,96 @@
+{layout name="user/layout" /}
+<link rel="stylesheet" href="__PUBLIC__/assets/css/lib/datatable/dataTables.bootstrap.min.css">
+<style>
+    #bootstrap-data-table {
+        width: 100%!important;
+    }
+</style>
+<div class="row">
+
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <strong class="card-title">登录记录</strong>
+            </div>
+            <div class="card-body">
+                <div id="bootstrap-data-table_wrapper"
+                     class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
+                    <div class="row">
+                        <div class="sufee-alert alert with-close alert-success alert-dismissible fade show" style="width: 100%;margin-right: 15px;padding-right: 15px;padding-left: 15px;margin-left: 15px;">
+                            <span class="badge badge-pill badge-success">Tips</span>
+                            您当前的的设备信息：{:request() -> ip()}（{//:get_city_by_ip(request() -> ip())}），目前云端服务器记录中您的登录信息：223.152.231.227（湖南省郴州市），请保护好您的商户信息，以免您的资金安全出现问题！<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        </div>
+                        <div class="col-sm-12">
+                            <table id="bootstrap-data-table"
+                                   class="table table-striped table-bordered dataTable no-footer">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>登录时间</th>
+                                    <th>登陆地点</th>
+                                    <th>登陆IP</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+<script src="__PUBLIC__/assets/js/lib/data-table/datatables.min.js"></script>
+<script src="__PUBLIC__/assets/js/lib/data-table/dataTables.bootstrap.min.js"></script>
+<script src="__PUBLIC__/assets/js/lib/data-table/dataTables.buttons.min.js"></script>
+<script src="__PUBLIC__/assets/js/lib/data-table/buttons.bootstrap.min.js"></script>
+<script src="__PUBLIC__/assets/js/lib/data-table/jszip.min.js"></script>
+<script src="__PUBLIC__/assets/js/lib/data-table/vfs_fonts.js"></script>
+<script src="__PUBLIC__/assets/js/lib/data-table/buttons.html5.min.js"></script>
+<script src="__PUBLIC__/assets/js/lib/data-table/buttons.print.min.js"></script>
+<script src="__PUBLIC__/assets/js/lib/data-table/buttons.colVis.min.js"></script>
+{/*<script src="__PUBLIC__/assets/js/init/datatables-init.js"></script>*/}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#bootstrap-data-table').DataTable({
+            "language":{
+                "decimal":        "",
+                "emptyTable":     "当前无数据",
+                "info":           "当前显示第_START_条到第_END_条 共_TOTAL_条",
+                "infoEmpty":      "当前无数据",
+                "infoFiltered":   "(从_MAX_条中筛选)",
+                "infoPostFix":    "",
+                "thousands":      ",",
+                "lengthMenu":     "每页显示 _MENU_ 条",
+                "loadingRecords": "加载中...",
+                "processing":     "加载中...",
+                "search":         "搜索:",
+                "zeroRecords":    "没有搜到任何东西",
+                "paginate": {
+                    "first":      "第一页",
+                    "last":       "最后一页",
+                    "next":       "下一页",
+                    "previous":   "上一页"
+                },
+                "aria": {
+                    "sortAscending":  ": 升序",
+                    "sortDescending": ": 降序"
+                }
+            },
+            "serverSide": true,
+            "ajax": {
+                "url":"{:url('ajax/loginLog')}",
+                "type": "POST"
+            }
+        });
+    });
+</script>

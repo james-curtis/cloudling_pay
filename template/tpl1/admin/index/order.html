@@ -1,0 +1,78 @@
+{layout name="index/layout" /}
+{include file="index/head"}
+<div class="container" style="padding-top:70px;">
+    <div class="text-center">
+        <div class="alert alert-defauit">
+            <form action="{:url('order')}" method="POST" class="form-inline">
+                <input type="hidden" name="mod" value="search">
+                {:token()}
+                <div class="form-group">
+                    <label>搜索</label>
+                    <select name="column" class="form-control">
+                        <option value="trade_no">交易号</option>
+                        <option value="out_trade_no">商户订单号</option>
+                        <option value="pid">商户号</option>
+                        <option value="name">商品名称</option>
+                        <option value="money">金额</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="value" placeholder="搜索内容">
+                </div>
+                <button type="submit" class="btn btn-primary">搜索</button>
+            </form>
+        </div>
+    </div>
+    {$con}
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover" style="background: white;">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>交易号</th>
+                <th>商户订单号</th>
+                <th>网站</th>
+                <th>名称</th>
+                <th>金额</th>
+                <th>方式</th>
+                <th>创建时间</th>
+                <th>结束时间</th>
+                <th>状态</th>
+            </tr>
+            </thead>
+            <tbody>
+            {foreach $data as $res}
+            {php}
+            $url = create_callback_url($order -> where('trade_no',$res['trade_no']) -> find());
+            {/php}
+            <td>{$res['pid']}</td>
+            <td>
+                <a class="btn btn-xs btn-info" href="{$url['notify']}" title="支付通知" target="_blank" rel="noreferrer">
+                    {$res['trade_no']}
+                </a>
+            </td>
+            <td>{$res['out_trade_no']}</td>
+            <td>{:get_domain($res['notify_url'])}</td>
+            <td>{$res['name']}</td>
+            <td>{$res['money']}</td>
+            <td>{$res['type']}</td>
+            <td>{$res['createtime']}</td>
+            <td>{$res['endtime']}</td>
+            <td>
+                {if $res['status'] == 1}
+                <a class="btn btn-xs btn-success">已完成</a>
+                {else}
+                <a class="btn btn-xs btn-danger">未完成</a>
+                {/if}
+            </td>
+            </tr>
+            {/foreach}
+            </tbody>
+        </table>
+    </div>
+    <div class="text-center">
+        {$page}
+    </div>
+</div>
+</body>
+</html>

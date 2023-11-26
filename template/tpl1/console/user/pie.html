@@ -1,0 +1,120 @@
+<div class="col-xl-4">
+    <div class="row">
+        <div class="col-lg-6 col-xl-12">
+            <div class="card br-0">
+                <div class="card-header">
+                    <strong class="card-title">今日收入<small><span class="badge badge-success float-right mt-1">总计:100元</span></small></strong>
+                </div>
+                <div class="card-body">
+                    <div class="chart-container ov-h">
+                        <div id="flotPie_today" class="float-chart" style="height: 150px"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-xl-12" style="margin-top: -3px;">
+            <div class="card br-0">
+                <div class="card-header">
+                    <strong class="card-title">昨日收入<small><span class="badge badge-success float-right mt-1">总计:99元</span></small></strong>
+                </div>
+                <div class="card-body">
+                    <div class="chart-container ov-h">
+                        <div id="flotPie_yesterday" class="float-chart" style="height: 150px"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Local Stuff-->
+<script>
+
+
+    jQuery(document).ready(function ($) {
+        "use strict";
+
+        // Pie chart flotPie1
+        var piedata = [
+            { label: "支付宝", data: [[1,32]], color: '#5c6bc0'},
+            { label: "QQ", data: [[1,33]], color: '#ef5350'},
+            { label: "微信", data: [[1,35]], color: '#66bb6a'}
+        ];
+
+        $.plot('#flotPie_today', piedata, {
+            series: {
+                pie: {
+                    show: true,
+                    radius: 1,
+                    innerRadius: 0.65,
+                    label: {
+                        show: true,
+                        radius: 0.8,
+                        formatter: labelFormatter,
+                        //threshold: 1
+                    },
+                    stroke: {
+                        width: 0
+                    }
+
+                }
+            },
+            grid: {
+                hoverable: true,
+                clickable: true
+            },
+            legend: {
+                show: true
+            },
+            tooltip: {
+                show: true,
+                content: "%p.0%, %s, 金额:%n元",
+                shifts: {
+                    x: 20,
+                    y: 0
+                },
+                defaultTheme: false
+            }
+        });
+
+        $.plot('#flotPie_yesterday', piedata, {
+            series: {
+                pie: {
+                    show: true,
+                    radius: 1,
+                    innerRadius: 0.65,
+                    label: {
+                        show: true,
+                        radius: 0.8,
+                        formatter: labelFormatter,
+                        //threshold: 1
+                    },
+                    stroke: {
+                        width: 0
+                    }
+
+                }
+            },
+            grid: {
+                hoverable: true,
+                clickable: true
+            },
+            legend: {
+                show: true
+            },
+            tooltip: {
+                show: true,
+                content: "%p.0%, %s, 金额:%n元",
+                shifts: {
+                    x: 20,
+                    y: 0
+                },
+                defaultTheme: false
+            }
+        });
+    });
+
+    function labelFormatter(label, series) {
+        return "<div style='pointer-events: none;font-size:8pt; text-align:center; padding:2px; color:white;;'>" + Math.round(series.percent) + "%</div>";
+    }
+</script>
